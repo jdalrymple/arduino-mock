@@ -7,18 +7,20 @@
 #include <stdint.h>
 #include <gmock/gmock.h>
 
+#include "Stream.h"
+
 #define DEC 10
 #define HEX 16
 #define OCT 8
 #define BIN 2
 
-class SerialMock {
+class SerialMock : public StreamMock {
   public:
     MOCK_METHOD0(getWriteError, int());
     MOCK_METHOD0(clearWriteError, void());
     MOCK_METHOD1(write, size_t(uint8_t));
     MOCK_METHOD1(write, size_t(const char *str));
-    MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
+    //MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
 
     MOCK_METHOD1(print, size_t(const char[]));
     MOCK_METHOD1(print, size_t(char));
@@ -36,9 +38,6 @@ class SerialMock {
 
     MOCK_METHOD1(begin, uint8_t(uint16_t));
 
-    MOCK_METHOD0(available, uint8_t());
-    MOCK_METHOD0(read, uint8_t());
-
     MOCK_METHOD0(flush, void());
 
     /* Not implemented yet
@@ -50,6 +49,7 @@ class SerialMock {
     */
 };
 
+/*
 class Serial_ {
 
   private:
@@ -89,19 +89,18 @@ class Serial_ {
 
     static void flush();
 
-    /*
-    TODO: Not implemented yet.
-    int getWriteError();
-    void clearWriteError();
-    static size_t print(const __FlashStringHelper *);
-    static size_t print(const String &);
-    static size_t print(const Printable&);
-    static size_t println(const __FlashStringHelper *);
-    static size_t println(const String &s);
-    static size_t println(const Printable&);
-    */
+    //TODO: Not implemented yet.
+    //int getWriteError();
+    //void clearWriteError();
+    //static size_t print(const __FlashStringHelper *);
+    //static size_t print(const String &);
+    //static size_t print(const Printable&);
+    //static size_t println(const __FlashStringHelper *);
+    //static size_t println(const String &s);
+    //static size_t println(const Printable&);
 };
 extern Serial_ Serial;
+*/
 
 SerialMock* serialMockInstance();
 void releaseSerialMock();
