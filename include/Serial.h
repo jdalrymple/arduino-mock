@@ -20,7 +20,7 @@ class SerialMock : public StreamMock {
     MOCK_METHOD0(clearWriteError, void());
     MOCK_METHOD1(write, size_t(uint8_t));
     MOCK_METHOD1(write, size_t(const char *str));
-    //MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
+    MOCK_METHOD2(write, size_t(const uint8_t *buffer, size_t size));
 
     MOCK_METHOD1(print, size_t(const char[]));
     MOCK_METHOD1(print, size_t(char));
@@ -36,7 +36,11 @@ class SerialMock : public StreamMock {
     MOCK_METHOD2(println, size_t(int, int));
     MOCK_METHOD0(println, size_t(void));
 
-    MOCK_METHOD1(begin, uint8_t(uint16_t));
+    MOCK_METHOD1(begin, void(uint16_t));
+    MOCK_METHOD0(begin, void());
+
+    MOCK_METHOD2(begin, void(uint16_t, uint8_t));
+    MOCK_METHOD0(end, void());
 
     MOCK_METHOD0(flush, void());
 
