@@ -1,6 +1,5 @@
-arduino-mock[![Build Status](https://travis-ci.org/ikeyasu/arduino-mock.svg?branch=master)](https://travis-ci.org/ikeyasu/arduino-mock)
+arduino-mock[![Build Status](https://travis-ci.org/jdalrymple/arduino-mock.svg?branch=master)](https://travis-ci.org/jdalrymple/arduino-mock)
 ============
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ikeyasu/arduino-mock)
 
 A GMock stub library for a mock of Arduino libraries.
 
@@ -64,31 +63,3 @@ https://github.com/ikeyasu/arduino-gmock-sample
 
 You need to copy "make/Makefile" to your app's dir
 and modify it.
-
-Contribution
-============
-
-Please send a pull-request.
-You need to run code formatter before commiting.
-
-Install formatter
------------------
-
-You need [astyle](http://astyle.sourceforge.net) 2.03.
-
-Unbutun 14.04 LTS:
-
-    $ sudo apt-get install astyle=2.03-1
-
-Mac (Homebrew):
-
-    $ brew tap ikeyasu/myversions
-    $ brew install astyle203
-
-Windows:
-Please download from [here](http://sourceforge.net/projects/astyle/files/astyle/astyle%202.03/).
-
-How to run formatter
---------------------
-
-    $ ./script/codeformatter.sh

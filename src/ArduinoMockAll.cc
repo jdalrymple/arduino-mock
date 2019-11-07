@@ -1,5 +1,3 @@
-// Copyright 2015 http://switchdevice.com
-
 #include "Arduino.cc"
 #include "EEPROM.cc"
 #include "Redbot.cc"

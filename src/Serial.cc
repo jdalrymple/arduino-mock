@@ -1,5 +1,3 @@
-// Copyright 2014 http://switchdevice.com
-
 #include "Serial.h"
 
 static SerialMock* gSerialMock = NULL;
@@ -16,14 +14,6 @@ void releaseSerialMock() {
     gSerialMock = NULL;
   }
 }
-
-// Serial.print(78, BIN) gives "1001110"
-// Serial.print(78, OCT) gives "116"
-// Serial.print(78, DEC) gives "78"
-// Serial.print(78, HEX) gives "4E"
-// Serial.println(1.23456, 0) gives "1"
-// Serial.println(1.23456, 2) gives "1.23"
-// Serial.println(1.23456, 4) gives "1.2346"
 
 void printDouble(double num, int digits) {
   std::streamsize ss = std::cout.precision();

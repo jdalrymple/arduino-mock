@@ -1,6 +1,7 @@
 #include "WiFi.h"
 
 static WiFiMock* p_WiFiMock = NULL;
+
 WiFiMock* WiFiMockInstance() {
   if (!p_WiFiMock) {
     p_WiFiMock = new WiFiMock();

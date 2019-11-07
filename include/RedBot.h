@@ -1,9 +1,5 @@
-/*
-*/
 #ifndef RedBot_h
 #define RedBot_h
-
-#include <Arduino.h>
 
 // Pin aliases for the motor controller.
 #define    L_CTRL_1   2
@@ -69,10 +65,10 @@ class RedBotMotors
     void leftMotor(int speed) {} 
 
     void rightMotor(int speed, int duration) {}
-	void leftMotor(int speed, int duration) {} 
+    void leftMotor(int speed, int duration) {} 
 
     void rightDrive(int speed) {}
-	void leftDrive(int speed) {}
+    void leftDrive(int speed) {}
 
     void stop() {}
     void coast() {}
@@ -95,6 +91,7 @@ class RedBotMotorsMock : public RedBotMotors {
 };
 
 RedBotMotorsMock* redbotMotorInstance();
+
 void releaseRedbotMock();
 
 #endif 

@@ -1,5 +1,3 @@
-/** Implementation of EEPROM mock **/
-
 #include "EEPROM.h"
 
 static EEPROMMock* p_EEPROMMock = NULL;

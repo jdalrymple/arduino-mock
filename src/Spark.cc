@@ -1,8 +1,7 @@
-// Copyright 2014 http://switchdevice.com
-
 #include "Spark.h"
 
 static SparkMock* gSparkMock = NULL;
+
 SparkMock* sparkMockInstance() {
   if(!gSparkMock) {
     gSparkMock = new SparkMock();

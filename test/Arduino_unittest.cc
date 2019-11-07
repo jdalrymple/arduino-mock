@@ -1,10 +1,8 @@
-// Copyright 2014 http://switchdevice.com
-// This example code is in the public domain.
-
 #include "gtest/gtest.h"
 #include "Arduino.h"
 
 using ::testing::Return;
+
 TEST(digitalRead, 2) {
   ArduinoMock* arduinoMock = arduinoMockInstance();
   EXPECT_CALL(*arduinoMock, digitalRead(2)).WillOnce(Return(1));

@@ -9,11 +9,8 @@ message ("building arduino_mock")
 message("Gtest include: ${GTEST_INCLUDE_DIRS}")
 message("Gmock include: ${GMOCK_INCLUDE_DIRS}")
 include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS} include)
-file(GLOB SRC
-    "src/ArduinoMockAll.cc"
-)
 
-add_library(arduino_mock STATIC ${SRC})
+add_library(arduino_mock STATIC "src/ArduinoMockAll.cc")
 
 target_include_directories(arduino_mock
     PUBLIC "include"
