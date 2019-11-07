@@ -54,12 +54,14 @@ unsigned long millis(void) {
 }
 
 unsigned long micros(void) {
-  return 0;
+    return arduinoMock->micros();
 }
+
 void delay(unsigned long a) {
   assert (arduinoMock != NULL);
   arduinoMock->delay(a);
 }
+
 void delayMicroseconds(unsigned int us) {
   UNUSED(us);
 }
