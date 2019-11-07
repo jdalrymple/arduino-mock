@@ -1,11 +1,9 @@
-/**
- * Arduino mock header
- */
 #ifndef ARDUINO_H
 #define ARDUINO_H
 
 #include <stdint.h>
 #include "Serial.h"
+#include "HardwareSerial.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,6 +69,8 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder);
 
 void attachInterrupt(uint8_t, void (*)(void), int mode);
 void detachInterrupt(uint8_t);
+void tone(uint8_t,unsigned int,unsigned long);
+void noTone(uint8_t);
 
 void setup(void);
 void loop(void);
@@ -128,6 +128,10 @@ class ArduinoMock {
     MOCK_METHOD1(analogRead, int (int));
     MOCK_METHOD1(delay, void (int));
     MOCK_METHOD0(millis, unsigned long ());
+    MOCK_METHOD3(tone, void (uint8_t,unsigned int,unsigned long));
+    MOCK_METHOD1(noTone, void (uint8_t));
+
+    MOCK_METHOD0(micros, unsigned long());
 };
 ArduinoMock* arduinoMockInstance();
 void releaseArduinoMock();

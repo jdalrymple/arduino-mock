@@ -88,18 +88,6 @@ class Serial_ {
     uint8_t read();
 
     static void flush();
-
-    /*
-    TODO: Not implemented yet.
-    int getWriteError();
-    void clearWriteError();
-    static size_t print(const __FlashStringHelper *);
-    static size_t print(const String &);
-    static size_t print(const Printable&);
-    static size_t println(const __FlashStringHelper *);
-    static size_t println(const String &s);
-    static size_t println(const Printable&);
-    */
 };
 extern Serial_ Serial;
 
