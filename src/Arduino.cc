@@ -54,12 +54,14 @@ unsigned long millis(void) {
 }
 
 unsigned long micros(void) {
-  return 0;
+    return arduinoMock->micros();
 }
+
 void delay(unsigned long a) {
   assert (arduinoMock != NULL);
   arduinoMock->delay(a);
 }
+
 void delayMicroseconds(unsigned int us) {
   UNUSED(us);
 }
@@ -91,3 +93,11 @@ void attachInterrupt(uint8_t, void (*)(void), int mode) {
 }
 
 void detachInterrupt(uint8_t) {}
+
+void tone(uint8_t pin, unsigned int freq, unsigned long duration = 0) {
+  arduinoMock->tone(pin,freq,duration);
+}
+
+void noTone(uint8_t pin) {
+  arduinoMock->noTone(pin);
+}
