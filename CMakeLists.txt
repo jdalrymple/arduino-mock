@@ -1,33 +1,38 @@
-cmake_minimum_required(VERSION 2.8)
-set(CMAKE_CXX_FLAGS "-std=c++98")
-set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/build")
-file(DOWNLOAD
- "https://raw.githubusercontent.com/octoblu/cmake-external-project-utils/master/external-project-utils.cmake"
- "${CMAKE_MODULE_PATH}/external-project-utils.cmake"
+cmake_minimum_required (VERSION 2.8.8)
+project (arduino_mock)
+
+find_package(Threads REQUIRED)
+add_subdirectory(lib/gtest)
+add_subdirectory(lib/gmock)
+
+message ("building arduino_mock")
+message("Gtest include: ${GTEST_INCLUDE_DIRS}")
+message("Gmock include: ${GMOCK_INCLUDE_DIRS}")
+include_directories(${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS} include)
+file(GLOB SRC
+    "src/ArduinoMockAll.cc"
 )
 
-include(external-project-utils)
+add_library(arduino_mock STATIC ${SRC})
 
-project (arduino-mock)
-
-file(GLOB HEADER_FILES *.h)
-
-add_library(arduino-mock STATIC "src/ArduinoMockAll.cc" ${HEADER_FILES})
-
-option(EXTERNAL_GMOCK "Download GMock" OFF)
-if(EXTERNAL_GMOCK)
-    getExternalProject("gtest" "https://googletest.googlecode.com/files/gtest-1.7.0.zip")
-    getExternalProject("gmock" "https://googlemock.googlecode.com/files/gmock-1.7.0.zip")
-endif()
-
-include_directories( arduino-mock
-  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+target_include_directories(arduino_mock
+    PUBLIC "include"
 )
 
-set_target_properties(arduino-mock PROPERTIES ENABLE_EXPORTS true)
+target_link_libraries(arduino_mock
+    ${GTEST_LIBS_DIR}/libgtest.a
+    ${GMOCK_LIBS_DIR}/libgmock.a
+    ${CMAKE_THREAD_LIBS_INIT}
+)
 
-linkExternalProject(arduino-mock "gtest")
-linkExternalProject(arduino-mock "gmock")
+set_target_properties( arduino_mock
+  PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/lib"
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/dist/bin"
+)
+
+add_dependencies(arduino_mock gtest gmock)
 
 option(test "Build all tests." OFF)
 

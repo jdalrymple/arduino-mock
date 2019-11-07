@@ -1,8 +1,9 @@
 #!/bin/sh
+set -eu
 
-[ ! -d build ] && mkdir build
-
-cd build && \
-cmake  -Dtest=ON .. && \
-make VERBOSE=1 && \
-ctest -VV
+cd -- "$(dirname -- "$0")"
+mkdir -p build
+cd build
+cmake -Dtest=ON ..
+make
+ctest -V
