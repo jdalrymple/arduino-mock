@@ -22,6 +22,7 @@ add_library(arduino-mock STATIC
   src/serialHelper.cc
   src/Spark.cc
   src/SPI.cc
+  src/String.cc
   src/WiFi.cc
   src/RedBot.cc
   src/Wire.cc
