@@ -1,6 +1,8 @@
 #ifndef RedBot_h
 #define RedBot_h
 
+#include "Arduino.h"
+
 // Pin aliases for the motor controller.
 #define    L_CTRL_1   2
 #define    L_CTRL_2   4
@@ -31,22 +33,32 @@
 #define PCINT_10      8
 #define PCINT_11      9
 
-enum WHEEL {LEFT, RIGHT, BOTH}; // Variable for which wheel you're interested in
-                  //  when you do things in the encoder class.
+/* 
+Variable for which wheel you're interested in when you do things in
+the encoder class.
+*/
+enum WHEEL {LEFT, RIGHT, BOTH};
 
-// These three functions need to work from within multiple classes, so we keep
-//  them separate and add them as friend functions where appropriate.
-void setPinChangeInterrupt(int pin, byte role); // The "role" of each pin is
-                  //  stored in an array which is accessed in the interrupt
-                  //  handler to determine what should be done on a falling edge
-                  //  PC interrupt.
-void pinFunctionHandler(byte pinIndex); // This is the function which actually
-                  //  handles the legwork after the interrupt has identified
-                  //  which pin caught the interrupt.
-void brake(void); // Globally accessible motor brake. I couldn't figure out how
-                  //  to set a function pointer to the RedBotMotors class
-                  //  function, and it's a small function, so I just made a
-                  //  global in the library.
+/*
+These three functions need to work from within multiple classes, so we keep them separate and add
+them as friend functions where appropriate.
+
+The "role" of each pin is stored in an array which is accessed in the interrupt handler to
+determine what should be done on a falling edge PC interrupt.
+*/
+void setPinChangeInterrupt(int pin, byte role); 
+
+/*
+This is the function which actually handles the legwork after the interrupt has identified
+which pin caught the interrupt.
+*/
+void pinFunctionHandler(byte pinIndex);
+
+/*
+Globally accessible motor brake. I couldn't figure out how to set a function pointer to the
+RedBotMotors class function, and it's a small function, so I just made a global in the library.
+*/
+void brake(void);
 void PC0Handler(byte PBTemp);
 void PC1Handler(byte PCTemp);
 void PC2Handler(byte PDTemp);
@@ -91,7 +103,6 @@ class RedBotMotorsMock : public RedBotMotors {
 };
 
 RedBotMotorsMock* redbotMotorInstance();
-
 void releaseRedbotMock();
 
 #endif 
